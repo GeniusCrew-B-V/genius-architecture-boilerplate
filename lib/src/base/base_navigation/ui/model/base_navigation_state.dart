@@ -1,0 +1,1 @@
+enum BaseNavigationSubPagesState { none, settingsPage }

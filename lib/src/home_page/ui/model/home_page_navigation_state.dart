@@ -1,0 +1,3 @@
+enum HomePageNavigationState {
+  baseHomePage,
+}

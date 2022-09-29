@@ -1,0 +1,1 @@
+enum UpdatesPageNavigationState { baseUpdatesPage, postDetailsPage }

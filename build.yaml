@@ -1,0 +1,11 @@
+targets:
+  $default:
+    builders:
+      fast_i18n:
+        options:
+          input_directory: lib/i18n
+          input_file_pattern: .i18n.yaml
+          output_file_name: translations.dart
+          base_locale: it
+          fallback_strategy: base_locale
+          translate_var: translation

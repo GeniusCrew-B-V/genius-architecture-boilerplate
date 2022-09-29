@@ -1,0 +1,1 @@
+enum DeliveryAddressPageException { genericError, noDeliveryAddresses }

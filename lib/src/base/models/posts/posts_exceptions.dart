@@ -1,0 +1,1 @@
+enum PostsExceptions { genericError, noPosts }

@@ -1,0 +1,178 @@
+generic:
+  next: Avanti
+  access: Accedi
+  notificationDefaultChannel: Notifiche in arrivo
+  notificationDescriptionDefaultChannel: Aggiornamenti sull' app @@
+  genericError: Errore imprevisto
+  logout: Logout
+  continueTxt: Continua
+  skip: Salta
+  login: Accedi
+  signup: Signup
+  cancel: Annulla
+  username: Username
+  email: Email
+  password: Password
+  confirmEmail: Conferma email
+  confirmPassword: Conferma password
+  name: Nome
+  surname: Cognome
+  backToLogin: Torna alla login
+  save: Salva
+  deleteAddressDialogDescription: L'indirizzo verrà eliminato per sempre.\nClicca su Continua per eliminare.
+  deletePaymentMethodDialogDescription: Il metodo di pagamento verrà eliminato per sempre.\nClicca su Continua per eliminare.
+  areYourSure: Sei sicuro?
+  profile: Profilo
+  home: Home
+  updates: Aggiornamenti
+
+#**************************************
+#************ TextFields **************
+#**************************************
+
+textFieldValidations:
+  textFormFieldEmpty: Questo campo non può essere vuoto
+  maxLenght: La lunghezza massima è di @@ caratteri
+  wrongCharacters: Caratteri non validi.
+  weakPassword: Password troppo debole
+  emailAlreadyInUse: Questa mail è già in uso
+  invalidEmail: Email non valida
+  emptySpace: Hai inserito uno spazio vuoto nella mail
+  passwordsDontMatch: Le password non corrispondono
+  emailsDontMatch: Le email non corrispondono
+
+#**************************************
+
+textFormFieldHints:
+  confirmNewPassword: Conferma la password
+  password: \*******
+  insertNewPassword: Nuova password
+  insertOldPassword: Vecchia password
+  email: Es. nome.cognome@email.com
+  name: Nome
+  surname: Cognome
+  editPassword: Cambia password
+
+#*************************************
+#*********** Intro Page***************
+#*************************************
+
+tutorial:
+  tutorialFirstMessageTitle: Siamo una startup specializzata\nin sviluppo mobile
+  tutorialFirstMessageDescription: nata dall'incontro di Emanuel\nTesoriello e Martijn Duin
+
+  tutorialSecondMessageTitle: La nostra crew opera da tutto il\nmondo!
+  tutorialSecondMessageDescription: composta dai migliori sviluppatori di\ntutta Europa e sostenitrice del\nnomadismo digitale
+
+  tutorialThirdMessageTitle: Lo sviluppo Flutter è il nostro\npunto di forza
+  tutorialThirdMessageDescription: ma abbiamo assi nelle maniche che ci\npermettono di eccellere negli sviluppi\nreact, backend, IoT e molto altro...
+
+#*************************************
+#********** Profile Page**************
+#*************************************
+
+profilePage:
+  editPersonalData: Modifica dati personali
+  settings: Impostazioni
+  privacyPolicy: Privacy Policy
+  changeProfileImage: Cambia immagine del profilo
+  username: Username
+  editPassword: Modifica password
+  name: Nome
+  surname: Cognome
+  email: Email
+  city: Città
+  genre: Genere
+  darkTheme: Tema alternativo
+  darkThemeDescription: Prova ora l'app con un colore diverso!
+  accessibility: Accessibilità
+  accessibilityDescription: Lorem ipsum dolor sic amet
+  aboutMe: About me
+  phoneNumber: Numero di telefono
+  nameAndSurname: Nome e cognome
+  resetPassword: Reset password
+  changePersonalInfos: Modifica informazioni personali
+
+#*************************************
+#*********** Signup Page**************
+#*************************************
+
+signupPage:
+  signupCompleted: Registrazione completata!
+  signup: Registrati
+  acceptTermsAndConditions: Accetto termini e condizioni del servizio
+  privacyPolicy1: Ho letto la vostra informativa sulla privacy ai sensi dell’art. 13 del GDPR. Ho compreso le finalità di cui al punto 2.A e le basi giuridiche per cui è necessario il trattamento e legittimo, anche senza il consenso dei soli dati indicati come obbligatori. In riferimento al trattamento dei miei dati personali, per cui si richiede il consenso come esplicitato nelle modalità e finalità indicate
+  privacyPolicy2B0: Acconsento al trattamento di altri dati particolari necessari per i servizi richiesti
+  privacyPolicy2B1: Trattamento dei dati per migliorare i servizi
+  privacyPolicy2B2: Marketing e/o commerciali
+  privacyPolicy2B3: Profilazione semi-automatizzata - finalizzate all'invio di consigli sulla nutrizione e/o offerte promozionali specifiche pertinenti agli obiettivi delle diete degli interessati registrati
+  checkEmail: Controlla la tua mail!
+  sentToEmail: "Abbiamo inviato una mail con un link di conferma\na questa mail:"
+  checkSpam: Se non la ricevi entro 5 minuti,\nperfavore controlla nello Spam.
+  notReceived: Non hai ricevuto l'email?
+  sendAgain: Invia di nuovo
+  gdpr: Manifestazione del consenso trattamento dati – Privacy - (GDPR 679/2016)
+  acceptPrivacy: Per continuare accetta i nostri Termini e condizioni e la nostra Privacy Policy
+  privacyTitle: Privacy e dati personali
+
+#*************************************
+#************* Login Page*************
+#*************************************
+
+loginPage:
+  title: Login
+  loginPageDescription: Lorem ipsum dolor sic amet
+  forgotPassword: Hai dimenticato la password?
+  recoverPassword: Recupera password
+  insertEmailToRecoverPwd: Inserisci l'email per cui vuoi recuperare la password.
+  recover: Recupera
+  newUser: Nuovo utente?
+  noUserFoundForThisEmail: Non è stato trovato nessun utente con questa email
+  wrongPasswordForThisUser: La password inserita non è corretta
+  notVerifiedEmail: Email non verificata per questo utente
+  tooManyAccessTempt: Attenzione hai fatto troppi tentativi di accesso. Per favore riprova più tardi.
+  errorInSendingNewPassword: C'è stato un errore nell'invio della nuova password
+  messageInSendingNewPassword: Abbiamo inviato un'email per il recupero della password
+  noUserFoundForRecoverPassword: Nessun utente trovato per l'email inserita
+  email: Email
+  password: Password
+  dontHaveAnAccount: Non hai un account?
+  signupHere: Registrati qui
+  orAccessWith: Oppure accedi con
+
+#*************************************
+#************* Access Page************
+#*************************************
+
+accessPage:
+  doYouAlreadyHaveAnAccount: Hai già un account?
+  access: Accedi
+  title: Registrati e raggiungi i tuoi\nobiettivi con noi!
+  description: La tua crew personale al costo di un\ndipendente, a supporto del tuo\nprogetto!
+
+#*************************************
+#********** Home Page       **********
+#*************************************
+
+homePage:
+  welcome: Benvenuto
+  title: Questo è il boilerplate della\nGeniusArchitecture!
+  subtitle: "Questo è quello che hai a disposizione:"
+
+#*************************************
+#********* Updates *****************
+#*************************************
+
+updatesPage:
+  title: Ecco tutti gli ultimi post by GeniusCrew
+
+#*************************************
+#********* Post Detail ***************
+#*************************************
+
+postDetailPage:
+  title: Update
+  postedOn: Pubblicato il
+
+postCard:
+  postedOn: Pubblicato il

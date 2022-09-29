@@ -1,0 +1,1 @@
+enum PaymentsMethodsPageException { genericError, noPaymentsMethods }

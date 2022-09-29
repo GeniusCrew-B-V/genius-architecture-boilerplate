@@ -1,0 +1,4 @@
+enum PostDetailNavigationState {
+  postDetailPage,
+  none,
+}
