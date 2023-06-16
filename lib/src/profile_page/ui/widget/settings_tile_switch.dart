@@ -33,7 +33,7 @@ class SettingsTileSwitch extends StatelessWidget {
         ),
         child: Text(
           title,
-          style: Theme.of(context).textTheme.headline6!.copyWith(
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 fontWeight: FontWeight.bold,
                 fontSize: Sizes.fontSizeS,
               ),
@@ -41,7 +41,7 @@ class SettingsTileSwitch extends StatelessWidget {
       ),
       subtitle: Text(
         subtitle,
-        style: Theme.of(context).textTheme.caption!.copyWith(
+        style: Theme.of(context).textTheme.bodySmall!.copyWith(
               color: AppColors.shuttleGrey,
             ),
       ),

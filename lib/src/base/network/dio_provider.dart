@@ -12,8 +12,8 @@ Dio provideDio({
       'accept': Headers.jsonContentType,
     },
     contentType: Headers.jsonContentType,
-    connectTimeout: 130000,
-    receiveTimeout: 130000,
+    connectTimeout: Duration(milliseconds: 130000),
+    receiveTimeout: Duration(milliseconds: 130000),
   );
   var dio = Dio(options);
   if (interceptors != null) {

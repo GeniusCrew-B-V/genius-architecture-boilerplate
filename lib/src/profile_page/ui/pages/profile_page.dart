@@ -1,5 +1,8 @@
+import 'package:baseproject/src/profile_page/di/profile_page_providers.dart';
+import 'package:baseproject/src/profile_page/ui/pages/personal_data_page.dart';
 import 'package:baseproject/src/profile_page/ui/widget/custom_tile_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../i18n/translations.dart';
@@ -8,12 +11,10 @@ import '../../../base/widget/ui/custom_circular_progress_indicator.dart';
 import '../model/profile_page_navigation_state.dart';
 import '../viewmodel/profile_page_view_model_main.dart';
 
-class ProfilePage extends StatelessWidget {
-  final ProfilePageViewModelMain viewModel;
+class ProfilePage extends ConsumerWidget {
   final Function()? onPop;
 
   const ProfilePage({
-    required this.viewModel,
     this.onPop,
   });
 
@@ -24,7 +25,7 @@ class ProfilePage extends StatelessWidget {
     }
   }
 
-  Widget _aboutMeSection(BuildContext context) {
+  Widget _aboutMeSection(ProfilePageViewModelMain viewModel, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
         bottom: Sizes.paddingXS,
@@ -36,46 +37,50 @@ class ProfilePage extends StatelessWidget {
           Container(
             child: ListTile(
               onTap: () {
-                viewModel.profileNavigationState = ProfilePageNavigationState.personalDataPage;
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => PersonalDataPage(
+                          viewModel: viewModel,
+                          onPop: () => Navigator.of(context).pop(),
+                        )));
               },
               contentPadding: EdgeInsets.zero,
               minVerticalPadding: 0,
               trailing: Icon(Icons.edit, color: Theme.of(context).primaryColor),
               title: Text(
                 translation.profilePage.aboutMe,
-                style: Theme.of(context).textTheme.headline6!.copyWith(fontWeight: FontWeight.w400),
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400),
               ),
             ),
           ),
           Text(
             translation.profilePage.nameAndSurname,
-            style: Theme.of(context).textTheme.caption!.copyWith(fontWeight: FontWeight.w400),
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.w400),
           ),
           Text(
             (viewModel.userModel.name ?? '') + ' ' + (viewModel.userModel.surname ?? ''),
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontWeight: FontWeight.w400,
                 ),
           ),
           SizedBox(height: Sizes.paddingS),
           Text(
             translation.profilePage.phoneNumber,
-            style: Theme.of(context).textTheme.caption!.copyWith(fontWeight: FontWeight.w400),
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.w400),
           ),
           Text(
             viewModel.userModel.phoneNumber ?? '',
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontWeight: FontWeight.w400,
                 ),
           ),
           SizedBox(height: Sizes.paddingS),
           Text(
             "Email",
-            style: Theme.of(context).textTheme.caption!.copyWith(fontWeight: FontWeight.w400),
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.w400),
           ),
           Text(
             viewModel.userModel.email ?? '',
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontWeight: FontWeight.w400,
                 ),
           ),
@@ -85,7 +90,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget drawer(BuildContext context) {
+  Widget drawer(ProfilePageViewModelMain viewModel, BuildContext context) {
     return Drawer(
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -124,7 +129,8 @@ class ProfilePage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ProfilePageViewModelMain viewModel = ref.watch(profilePageViewModelProvider);
     viewModel.showSnackBar = (message) => _showSnackBar(context, message);
     return WillPopScope(
       onWillPop: () => onPop!(),
@@ -145,7 +151,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                     children: [
                       SizedBox(height: Sizes.padding),
-                      _aboutMeSection(context),
+                      _aboutMeSection(viewModel, context),
                       SizedBox(height: Sizes.padding),
                       CustomTileWidget(text: translation.profilePage.settings, onPressed: () => viewModel.profileNavigationState = ProfilePageNavigationState.settingsPage),
                       SizedBox(height: Sizes.padding),

@@ -31,12 +31,12 @@ class PostCard extends StatelessWidget {
                 Text(
                   postModel.creatorName,
                   overflow: TextOverflow.clip,
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 Text(
                   "${translation.postCard.postedOn + " " + postModel.postDate}",
                   overflow: TextOverflow.clip,
-                  style: Theme.of(context).textTheme.caption!.copyWith(color: Colors.white.withOpacity(0.7)),
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white.withOpacity(0.7)),
                 ),
               ],
             ),
@@ -63,14 +63,14 @@ class PostCard extends StatelessWidget {
             _buildUserSection(context),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.paddingS),
-              child: Text(postModel.title, maxLines: 1, overflow: TextOverflow.fade, style: Theme.of(context).textTheme.headline6?.copyWith(fontWeight: FontWeight.w700)),
+              child: Text(postModel.title, maxLines: 1, overflow: TextOverflow.fade, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700)),
             ),
             const SizedBox(
               height: Sizes.paddingXS,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.paddingS),
-              child: Text(postModel.caption, maxLines: 3, overflow: TextOverflow.fade, style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.white.withOpacity(0.7))),
+              child: Text(postModel.caption, maxLines: 3, overflow: TextOverflow.fade, style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white.withOpacity(0.7))),
             ),
             // _buildBottomSection(context),
             // SizedBox(height: Dimension.padding),

@@ -20,7 +20,7 @@ class HomeCard extends StatelessWidget {
           CircleAvatar(
             child: Text(
               model.userInitials,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             backgroundColor: Theme.of(context).primaryColor,
           ),
@@ -33,11 +33,11 @@ class HomeCard extends StatelessWidget {
             children: [
               Text(
                 model.title,
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.black),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.black),
               ),
               Text(
                 model.description,
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.black),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.black),
               )
             ],
           ))

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../base/widget/ui/custom_navigator_pop_scope.dart';
 import '../../../login/ui/navigator/login_navigator.dart';
 import '../../di/signup_providers.dart';
@@ -19,51 +18,49 @@ class SignupNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: signupProviders,
-      child: Consumer<SignipViewModelMain>(
-        builder: (_, viewModel, __) {
-          return CustomNavigatorPopScope(
-            navigatorStateKey: _signupNavigationKey,
-            pages: [
+    return Consumer(
+      builder: (_, ref, __) {
+        SignupViewModelMain viewModel = ref.watch(signupViewModelProvider);
+        return CustomNavigatorPopScope(
+          navigatorStateKey: _signupNavigationKey,
+          pages: [
+            MaterialPage(
+              child: SignupPage(
+                key: ValueKey('SignupPage'),
+                viewModel: viewModel,
+                onPop: onMainPop,
+              ),
+            ),
+            if (viewModel.signupNavigationState == SignupNavigationState.confirmPage)
               MaterialPage(
-                child: SignupPage(
-                  key: ValueKey('SignupPage'),
+                child: SignupConfirmPage(
+                  key: ValueKey('SignupConfirmPage'),
                   viewModel: viewModel,
                   onPop: onMainPop,
                 ),
               ),
-              if (viewModel.signupNavigationState == SignupNavigationState.confirmPage)
-                MaterialPage(
-                  child: SignupConfirmPage(
-                    key: ValueKey('SignupConfirmPage'),
-                    viewModel: viewModel,
-                    onPop: onMainPop,
-                  ),
+            if (viewModel.signupNavigationState == SignupNavigationState.privacyPolicyPage)
+              MaterialPage(
+                child: SignupPrivacyPolicyPage(
+                  key: ValueKey('PrivacyPolicyPage'),
+                  viewModel: viewModel,
+                  onPop: () => viewModel.signupNavigationState = SignupNavigationState.startPage,
                 ),
-              if (viewModel.signupNavigationState == SignupNavigationState.privacyPolicyPage)
-                MaterialPage(
-                  child: SignupPrivacyPolicyPage(
-                    key: ValueKey('PrivacyPolicyPage'),
-                    viewModel: viewModel,
-                    onPop: () => viewModel.signupNavigationState = SignupNavigationState.startPage,
-                  ),
+              ),
+            if (viewModel.signupNavigationState == SignupNavigationState.loginPage)
+              MaterialPage(
+                child: LoginNavigator(
+                  key: ValueKey('LoginNavigator2'),
+                  onMainPop: onMainPop,
                 ),
-              if (viewModel.signupNavigationState == SignupNavigationState.loginPage)
-                MaterialPage(
-                  child: LoginNavigator(
-                    key: ValueKey('LoginNavigator2'),
-                    onMainPop: onMainPop,
-                  ),
-                ),
-            ],
-            onPopPage: (route, result) {
-              viewModel.signupNavigationState = SignupNavigationState.startPage;
-              return false;
-            },
-          );
-        },
-      ),
+              ),
+          ],
+          onPopPage: (route, result) {
+            viewModel.signupNavigationState = SignupNavigationState.startPage;
+            return false;
+          },
+        );
+      },
     );
   }
 }

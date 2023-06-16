@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 
 import '../../../base/base_navigation/domain/model/base_user_response_model.dart';
@@ -7,8 +6,7 @@ import 'profile_page_data_source.dart';
 
 class ProfilePageDataSourceImpl extends ProfilePageDataSource {
   final Dio _dio;
-  final FirebaseFirestore _firestore;
-  ProfilePageDataSourceImpl(this._dio, this._firestore);
+  ProfilePageDataSourceImpl(this._dio,);
 
   Future<BaseUserResponseModel> saveUserChanges(ProfilePageUserRequestModel pageUserRequestModel) async {
     try {

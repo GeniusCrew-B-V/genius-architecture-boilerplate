@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../base/widget/ui/custom_navigator_pop_scope.dart';
 import '../../di/home_page_providers.dart';
@@ -23,28 +23,26 @@ class HomePageNavigator extends StatefulWidget {
 class _HomePageNavigatorState extends State<HomePageNavigator> {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: homePageProviders,
-      child: Consumer<HomePageViewModelMain>(
-        builder: (_, viewModel, __) {
-          return CustomNavigatorPopScope(
-            navigatorStateKey: _homePageNavigationKey,
-            pages: [
-              MaterialPage(
-                child: HomePage(
-                  viewModel: viewModel,
-                  onPop: widget.onMainPop,
-                ),
+    return Consumer(
+      builder: (_, ref, __) {
+        HomePageViewModelMain viewModel = ref.watch(homePageViewModelProvider);
+        return CustomNavigatorPopScope(
+          navigatorStateKey: _homePageNavigationKey,
+          pages: [
+            MaterialPage(
+              child: HomePage(
+                viewModel: viewModel,
+                onPop: widget.onMainPop,
               ),
-            ],
-            onPopPage: (route, result) {
-              viewModel.homeNavigationState =
-                  HomePageNavigationState.baseHomePage;
-              return false;
-            },
-          );
-        },
-      ),
+            ),
+          ],
+          onPopPage: (route, result) {
+            viewModel.homeNavigationState =
+                HomePageNavigationState.baseHomePage;
+            return false;
+          },
+        );
+      },
     );
   }
 }

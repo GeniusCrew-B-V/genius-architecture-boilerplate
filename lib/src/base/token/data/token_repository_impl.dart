@@ -1,11 +1,19 @@
+import 'package:baseproject/src/base/token/data/remote/token_remote_data_source.dart';
+import 'package:baseproject/src/base/token/domain/model/refresh_token_request_model.dart';
+
 import '../domain/model/token_request_model.dart';
+import '../domain/model/token_response_model.dart';
 import '../domain/token_repository.dart';
 import 'local/token_local_data_source.dart';
 
 class TokenRepositoryImpl extends TokenRepository {
   final TokenLocalDataSource _localDataSource;
+  final TokenRemoteDataSource _remoteDataSource;
 
-  TokenRepositoryImpl(this._localDataSource);
+  TokenRepositoryImpl(this._localDataSource, this._remoteDataSource);
+
+  @override
+  Future<TokenResponseModel> updateToken(RefreshTokenRequestModel tokenModel) => _remoteDataSource.updateToken(tokenModel);
 
   @override
   Future<String?> getToken() async {

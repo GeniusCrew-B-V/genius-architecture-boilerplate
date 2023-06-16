@@ -10,8 +10,14 @@ import '../model/updates_page_navigation_state.dart';
 part 'updates_page_view_model.dart';
 
 mixin UpdatesPageViewModelShared on ChangeNotifier {
+  update(UpdatesPageRepository updatesPageRepository, BaseViewModelMain baseViewModel){
+    this.updatesPageRepository = updatesPageRepository;
+    this.baseViewModel = baseViewModel;
+  }
+
   late UpdatesPageRepository updatesPageRepository;
   late BaseViewModelMain baseViewModel;
+
   Function(String)? showSnackBar;
   bool _showPageLoader = true;
 
@@ -30,13 +36,5 @@ mixin UpdatesPageViewModelShared on ChangeNotifier {
   set showPageLoader(bool value) {
     _showPageLoader = value;
     //notifyListeners();
-  }
-
-  void update(
-    UpdatesPageRepository repository,
-    BaseViewModelMain newBaseViewModelMain,
-  ) {
-    updatesPageRepository = repository;
-    baseViewModel = newBaseViewModelMain;
   }
 }

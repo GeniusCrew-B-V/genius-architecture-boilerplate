@@ -4,7 +4,7 @@ import 'package:baseproject/src/post_detail/ui/model/post_detail_navigation_stat
 import 'package:baseproject/src/post_detail/ui/pages/post_detail.dart';
 import 'package:baseproject/src/post_detail/ui/viewmodel/post_detail_view_model_main.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final _postDetailNavigationKey = GlobalKey<NavigatorState>();
 
@@ -21,29 +21,27 @@ class PostDetailNavigator extends StatefulWidget {
 class _PostDetailNavigatorState extends State<PostDetailNavigator> {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: postDetailProviders,
-      child: Consumer<PostDetailViewModelMain>(
-        builder: (_, viewModel, __) {
-          viewModel.postId = widget.postId;
-          return CustomNavigatorPopScope(
-            navigatorStateKey: _postDetailNavigationKey,
-            pages: [
-              MaterialPage(
-                child: PostDetail(
-                  viewModel: viewModel,
-                  onPop: widget.onMainPop,
-                ),
+    return Consumer(
+      builder: (_, ref, __) {
+        PostDetailViewModelMain viewModel = ref.watch(postDetailViewModelProvider);
+        viewModel.postId = widget.postId;
+        return CustomNavigatorPopScope(
+          navigatorStateKey: _postDetailNavigationKey,
+          pages: [
+            MaterialPage(
+              child: PostDetail(
+                viewModel: viewModel,
+                onPop: widget.onMainPop,
               ),
-            ],
-            onPopPage: (route, result) {
-              viewModel.postDetailNavigationState =
-                  PostDetailNavigationState.none;
-              return false;
-            },
-          );
-        },
-      ),
+            ),
+          ],
+          onPopPage: (route, result) {
+            viewModel.postDetailNavigationState =
+                PostDetailNavigationState.none;
+            return false;
+          },
+        );
+      },
     );
   }
 }

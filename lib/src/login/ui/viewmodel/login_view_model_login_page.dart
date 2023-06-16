@@ -11,6 +11,7 @@ mixin LoginViewModelLoginPage on LoginViewModelShared {
   // ***************** Show password **********************
   // ******************************************************
   bool _showPassword = true;
+
   bool get showPassword => _showPassword;
 
   set showPassword(bool newValue) {
@@ -30,7 +31,12 @@ mixin LoginViewModelLoginPage on LoginViewModelShared {
     showPageLoader = true;
     notifyListeners();
     if (loginFormKey.currentState!.validate()) {
-      LoginResponseModel resp = await loginRepository.loginUser(email.text, password.text).catchError((e) {
+      try {
+        LoginResponseModel resp = await loginRepository.loginUser(email.text, password.text);
+        tokenRepository.saveToken(resp.token, resp.refreshToken, resp.timeout);
+        loginNavigationState = LoginNavigationState.baseNavigator;
+      } on LoginException catch (e) {
+        print(e);
         if (e == LoginException.userNotFound) {
           showSnackBar(translation.loginPage.noUserFoundForThisEmail);
         } else if (e == LoginException.wrongPassword) {
@@ -41,9 +47,10 @@ mixin LoginViewModelLoginPage on LoginViewModelShared {
           showSnackBar(translation.loginPage.tooManyAccessTempt);
         } else
           showSnackBar(translation.generic.genericError);
-      });
-      tokenRepository.saveToken(resp.token, resp.refreshToken, resp.timeout);
-      loginNavigationState = LoginNavigationState.baseNavigator;
+      } catch (e) {
+        print(e);
+        showSnackBar(translation.generic.genericError);
+      }
     }
     showPageLoader = false;
     notifyListeners();

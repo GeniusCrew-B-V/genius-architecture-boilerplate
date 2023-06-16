@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../base/base_navigation/ui/pages/settings_page.dart';
 import '../../../base/widget/ui/custom_navigator_pop_scope.dart';
@@ -12,7 +12,7 @@ import '../viewmodel/profile_page_view_model_main.dart';
 
 final _profilePageNavigationKey = GlobalKey<NavigatorState>();
 
-class ProfilePageNavigator extends StatelessWidget {
+class ProfilePageNavigator extends ConsumerWidget {
   final Function()? onMainPop;
 
   const ProfilePageNavigator({
@@ -20,56 +20,47 @@ class ProfilePageNavigator extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ...profilePageProviders,
+  Widget build(BuildContext context,WidgetRef ref) {
+    ProfilePageViewModelMain profileViewModel = ref.watch(profilePageViewModelProvider);
+    return CustomNavigatorPopScope(
+      navigatorStateKey: _profilePageNavigationKey,
+      pages: [
+        MaterialPage(
+          child: ProfilePage(
+            onPop: onMainPop,
+          ),
+        ),
+        if (profileViewModel.profileNavigationState == ProfilePageNavigationState.personalDataPage)
+          MaterialPage(
+            child: PersonalDataPage(
+              viewModel: profileViewModel,
+              onPop: () => profileViewModel.profileNavigationState = ProfilePageNavigationState.profilePage,
+            ),
+          ),
+        if (profileViewModel.profileNavigationState == ProfilePageNavigationState.changePwdPage)
+          MaterialPage(
+            child: ChangePwdPage(
+              viewModel: profileViewModel,
+              onPop: () {
+                profileViewModel.profileNavigationState = ProfilePageNavigationState.profilePage;
+                profileViewModel.oldPwd = TextEditingController();
+                profileViewModel.newPwd = TextEditingController();
+                profileViewModel.confirmNewPwd = TextEditingController();
+              },
+            ),
+          ),
+        if (profileViewModel.profileNavigationState == ProfilePageNavigationState.settingsPage)
+          MaterialPage(
+            child: SettingsPage(
+              onPop: () => profileViewModel.profileNavigationState = ProfilePageNavigationState.profilePage,
+              viewModel: profileViewModel.baseViewModel,
+            ),
+          ),
       ],
-      child: Consumer<ProfilePageViewModelMain>(
-        builder: (_, profileViewModel, __) {
-          return CustomNavigatorPopScope(
-            navigatorStateKey: _profilePageNavigationKey,
-            pages: [
-              MaterialPage(
-                child: ProfilePage(
-                  viewModel: profileViewModel,
-                  onPop: onMainPop,
-                ),
-              ),
-              if (profileViewModel.profileNavigationState == ProfilePageNavigationState.personalDataPage)
-                MaterialPage(
-                  child: PersonalDataPage(
-                    viewModel: profileViewModel,
-                    onPop: () => profileViewModel.profileNavigationState = ProfilePageNavigationState.profilePage,
-                  ),
-                ),
-              if (profileViewModel.profileNavigationState == ProfilePageNavigationState.changePwdPage)
-                MaterialPage(
-                  child: ChangePwdPage(
-                    viewModel: profileViewModel,
-                    onPop: () {
-                      profileViewModel.profileNavigationState = ProfilePageNavigationState.profilePage;
-                      profileViewModel.oldPwd = TextEditingController();
-                      profileViewModel.newPwd = TextEditingController();
-                      profileViewModel.confirmNewPwd = TextEditingController();
-                    },
-                  ),
-                ),
-              if (profileViewModel.profileNavigationState == ProfilePageNavigationState.settingsPage)
-                MaterialPage(
-                  child: SettingsPage(
-                    onPop: () => profileViewModel.profileNavigationState = ProfilePageNavigationState.profilePage,
-                    viewModel: profileViewModel.baseViewModel,
-                  ),
-                ),
-            ],
-            onPopPage: (route, result) {
-              profileViewModel.profileNavigationState = ProfilePageNavigationState.profilePage;
-              return true;
-            },
-          );
-        },
-      ),
+      onPopPage: (route, result) {
+        profileViewModel.profileNavigationState = ProfilePageNavigationState.profilePage;
+        return true;
+      },
     );
   }
 }

@@ -19,7 +19,6 @@ mixin StartPageViewModelShared on ChangeNotifier {
   late TokenRepository tokenRepository;
 
   update(
-    BuildContext context,
     FirebaseMessaging firebaseMessaging,
     FirebaseApp firebaseApp,
     TokenRepository tknRepository,
@@ -42,8 +41,7 @@ mixin StartPageViewModelShared on ChangeNotifier {
       return tokenRepository.getToken().asStream().listen((token) {
         if (token == null || token.isEmpty) {
           if (navigationState == StartPageNavigationState.intro) {
-            //This is just for the presentation for a correct use, we consider using a proper splash screen
-            Future.delayed(Duration(seconds: 2), () => navigationState = StartPageNavigationState.startPage);
+            navigationState = StartPageNavigationState.startPage;
           }
           print('User is currently signed out!');
         } else {

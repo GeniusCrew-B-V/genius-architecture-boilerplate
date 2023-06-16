@@ -28,7 +28,7 @@ class NotificationPreferenceCard extends StatelessWidget {
                   notificationPreference.title,
                   style: Theme.of(context)
                       .textTheme
-                      .subtitle1
+                      .titleMedium
                       ?.copyWith(fontWeight: FontWeight.w600, color: notificationPreference.isAnActiveNotification ? Theme.of(context).primaryColor : AppColors.gray),
                 ),
               ),
@@ -47,7 +47,7 @@ class NotificationPreferenceCard extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.padding),
-              child: Text(notificationPreference.description, style: Theme.of(context).textTheme.bodyText2),
+              child: Text(notificationPreference.description, style: Theme.of(context).textTheme.bodyMedium),
             ),
           ],
         ),

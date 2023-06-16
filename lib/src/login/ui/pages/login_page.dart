@@ -3,7 +3,6 @@ import 'package:baseproject/src/base/widget/ui/text_form_fields/email_text_form_
 import 'package:baseproject/src/base/widget/ui/text_form_fields/password_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:sign_button/sign_button.dart';
 
 import '../../../../resources/res.dart';
 import '../../../base/widget/ui/custom_circular_progress_indicator.dart';
@@ -93,30 +92,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  thirdPartyAccessButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const SizedBox(
-          width: Sizes.padding,
-        ),
-        SignInButton.mini(
-          buttonSize: ButtonSize.large,
-          buttonType: ButtonType.google,
-          onPressed: () => {},
-        ),
-        const SizedBox(
-          width: Sizes.padding,
-        ),
-        SignInButton.mini(buttonSize: ButtonSize.large, buttonType: ButtonType.apple, onPressed: () => {}),
-        const SizedBox(
-          width: Sizes.padding,
-        ),
-        SignInButton.mini(buttonSize: ButtonSize.large, buttonType: ButtonType.facebook, onPressed: () => {}),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     widget.viewModel.showSnackBar = (message) => _showSnackbar(context, message);
@@ -146,11 +121,11 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(height: Sizes.paddingL),
                         Image.asset(ImageSrc.longLogo),
                         SizedBox(height: Sizes.paddingL),
-                        Text(translation.loginPage.email, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyText2),
+                        Text(translation.loginPage.email, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyMedium),
                         SizedBox(height: Sizes.paddingS),
                         EmailTextFormField(widget.viewModel.email),
                         SizedBox(height: Sizes.paddingM),
-                        Text(translation.loginPage.password, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyText2),
+                        Text(translation.loginPage.password, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyMedium),
                         SizedBox(height: Sizes.paddingS),
                         PasswordTextFormField(
                           widget.viewModel.password,
@@ -182,10 +157,10 @@ class _LoginPageState extends State<LoginPage> {
                               onPressed: () => _showForgotPasswordDialog(),
                               child: Text.rich(
                                 TextSpan(children: <InlineSpan>[
-                                  TextSpan(text: translation.loginPage.forgotPassword + " ", style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
+                                  TextSpan(text: translation.loginPage.forgotPassword + " ", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
                                   TextSpan(
                                       text: translation.loginPage.recoverPassword,
-                                      style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor))
+                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor))
                                 ]),
                                 textAlign: TextAlign.center,
                               ),
@@ -209,10 +184,10 @@ class _LoginPageState extends State<LoginPage> {
                                   onPressed: () => widget.viewModel.onNewUserClick(),
                                   child: Text.rich(
                                     TextSpan(children: <InlineSpan>[
-                                      TextSpan(text: translation.loginPage.dontHaveAnAccount + " ", style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
+                                      TextSpan(text: translation.loginPage.dontHaveAnAccount + " ", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
                                       TextSpan(
                                           text: translation.loginPage.signupHere,
-                                          style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                 fontWeight: FontWeight.bold,
                                                 color: Theme.of(context).primaryColor,
                                               ))

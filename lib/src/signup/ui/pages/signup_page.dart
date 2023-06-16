@@ -13,7 +13,7 @@ import '../../../base/widget/ui/text_form_fields/confirm_password_text_form_fiel
 import '../viewmodel/signup_view_model_main.dart';
 
 class SignupPage extends StatelessWidget {
-  final SignipViewModelMain viewModel;
+  final SignupViewModelMain viewModel;
   final Function onPop;
 
   const SignupPage({Key? key, required this.viewModel, required this.onPop}) : super(key: key);
@@ -66,16 +66,16 @@ class SignupPage extends StatelessWidget {
                               const SizedBox(
                                 height: Sizes.paddingM,
                               ),
-                              Text(translation.generic.username, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyText2),
+                              Text(translation.generic.username, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyMedium),
                               SizedBox(height: Sizes.paddingS),
                               UsernameTextFormField(viewModel.username),
                               SizedBox(height: Sizes.padding),
-                              Text(translation.generic.name, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyText2),
+                              Text(translation.generic.name, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyMedium),
                               SizedBox(height: Sizes.paddingS),
                               NameTextFormField(viewModel.name),
                               SizedBox(height: Sizes.padding),
                               SizedBox(height: Sizes.paddingS),
-                              Text(translation.generic.surname, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyText2),
+                              Text(translation.generic.surname, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyMedium),
                               SizedBox(height: Sizes.paddingS),
                               SurnameTextFormField(viewModel.surname),
                               SizedBox(height: Sizes.padding),
@@ -84,11 +84,11 @@ class SignupPage extends StatelessWidget {
                                 color: AppColors.navigationBarColor,
                               ),
                               SizedBox(height: Sizes.padding),
-                              Text(translation.generic.email, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyText2),
+                              Text(translation.generic.email, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyMedium),
                               SizedBox(height: Sizes.paddingS),
                               EmailTextFormField(viewModel.email),
                               SizedBox(height: Sizes.padding),
-                              Text(translation.generic.confirmEmail, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyText2),
+                              Text(translation.generic.confirmEmail, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyMedium),
                               SizedBox(height: Sizes.paddingS),
                               ConfirmEmailTextFormField(viewModel.confirmEmail, viewModel.email),
                               SizedBox(height: Sizes.padding),
@@ -97,7 +97,7 @@ class SignupPage extends StatelessWidget {
                                 color: AppColors.navigationBarColor,
                               ),
                               SizedBox(height: Sizes.padding),
-                              Text(translation.generic.password, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyText2),
+                              Text(translation.generic.password, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyMedium),
                               SizedBox(height: Sizes.paddingS),
                               PasswordTextFormField(
                                 viewModel.password,
@@ -109,7 +109,7 @@ class SignupPage extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: Sizes.padding),
-                              Text(translation.generic.confirmPassword, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyText2),
+                              Text(translation.generic.confirmPassword, textAlign: TextAlign.start, style: Theme.of(context).textTheme.bodyMedium),
                               SizedBox(height: Sizes.paddingS),
                               ConfirmPwdTextFormField(
                                 viewModel.confirmPassword,

@@ -41,7 +41,6 @@ mixin BaseViewModelShared on ChangeNotifier {
   ThemeViewModel get themeViewModel => _themeViewModel;
 
   bool? _darkTheme;
-  bool? _accessibility;
 
   bool? get darkTheme => _darkTheme;
 
@@ -118,9 +117,11 @@ mixin BaseViewModelShared on ChangeNotifier {
   // ******************************************************
 
   initUserDatas() async {
-    userModel = await baseRepository.initUserDatas().catchError((e) {
+    try {
+      userModel = await baseRepository.initUserDatas();
+    } on Exception catch (e) {
       print(e);
-    });
+    }
   }
 
   void logOut() async {

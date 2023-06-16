@@ -1,35 +1,28 @@
-import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
+import 'package:baseproject/src/base/settings/ui/viewmodel/theme_viewmodel.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../start/di/start_page_providers.dart';
 import '../data/local/settings_local_data_source.dart';
 import '../data/local/settings_local_data_source_impl.dart';
 import '../data/theme_repository_impl.dart';
 import '../domain/theme_repository.dart';
-import '../ui/viewmodel/theme_viewmodel.dart';
 
-List<SingleChildWidget> themePageProviders(SharedPreferences prefs) => [
-      ..._independentServices(prefs),
-      ..._dependentServices,
-    ];
+final _themeDataSourceProvider = Provider.family<SettingsLocalDataSource, SharedPreferences>(
+  (ref, preferences) {
+    return SettingsLocalDataSourceImpl(preferences);
+  },
+);
 
-List<SingleChildWidget> _independentServices(SharedPreferences prefs) => [
-      Provider<SharedPreferences>(
-        create: (_) => prefs,
-      ),
-    ];
+final _themeRepositoryProvider = Provider<ThemeRepository>(
+  (ref) {
+    final SharedPreferences? preferences = ref.watch(preferencesProvider!);
+    final SettingsLocalDataSource dataSource = ref.watch(_themeDataSourceProvider(preferences!));
+    return ThemeRepositoryImpl(dataSource);
+  },
+);
 
-List<SingleChildWidget> _dependentServices = [
-  ProxyProvider<SharedPreferences, SettingsLocalDataSource>(
-    update: (_, prefs, themeLocalDataSource) =>
-        SettingsLocalDataSourceImpl(prefs),
-  ),
-  ProxyProvider<SettingsLocalDataSource, ThemeRepository>(
-    update: (context, themeRemoteDataSource, themeRepository) =>
-        ThemeRepositoryImpl(themeRemoteDataSource),
-  ),
-  ChangeNotifierProxyProvider<ThemeRepository, ThemeViewModel>(
-      create: (context) => ThemeViewModel(),
-      update: (context, repository, viewModel) =>
-          viewModel!..update(repository)),
-];
+final themeViewModelProvider = ChangeNotifierProvider<ThemeViewModel>((ref) {
+  ThemeRepository? repository = ref.watch(_themeRepositoryProvider);
+  return ThemeViewModel(repository!);
+});

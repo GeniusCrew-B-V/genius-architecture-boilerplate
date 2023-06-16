@@ -3,7 +3,6 @@ import 'package:baseproject/resources/res.dart';
 import 'package:baseproject/src/start/ui/model/start_page_navigator_state.dart';
 import 'package:baseproject/src/start/ui/viewmodel/start_page_view_model_main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 import '../widgets/start_app_bar.dart';
 
@@ -18,18 +17,10 @@ class AccessPage extends StatefulWidget {
 }
 
 class _AccessPageState extends State<AccessPage> {
-  bool _keyboardVisible = false;
 
   @protected
   void initState() {
     super.initState();
-    KeyboardVisibilityController().onChange.listen((bool visible) {
-      if (this.mounted) {
-        setState(() {
-          _keyboardVisible = visible;
-        });
-      }
-    });
   }
 
   onWillPop() {
@@ -78,7 +69,7 @@ class _AccessPageState extends State<AccessPage> {
                             Text(
                               translation.accessPage.title,
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.bodyText1!.copyWith(fontWeight: FontWeight.w600),
+                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600),
                             ),
                             Divider(
                               color: Colors.transparent,
@@ -87,7 +78,7 @@ class _AccessPageState extends State<AccessPage> {
                             Text(
                               translation.accessPage.description,
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.white.withOpacity(0.5)),
+                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white.withOpacity(0.5)),
                             ),
                           ],
                         ),
@@ -113,8 +104,8 @@ class _AccessPageState extends State<AccessPage> {
                       onTap: () => widget.viewModel.onDoYouAlreadyHaveAnAccountClick(),
                       child: Text.rich(
                         TextSpan(children: <InlineSpan>[
-                          TextSpan(text: translation.accessPage.doYouAlreadyHaveAnAccount + " ", style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
-                          TextSpan(text: translation.accessPage.access, style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor))
+                          TextSpan(text: translation.accessPage.doYouAlreadyHaveAnAccount + " ", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
+                          TextSpan(text: translation.accessPage.access, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor))
                         ]),
                         textAlign: TextAlign.center,
                       ),

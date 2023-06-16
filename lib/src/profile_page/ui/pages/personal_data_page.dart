@@ -55,23 +55,23 @@ class PersonalDataPage extends StatelessWidget {
                         key: viewModel.userFormKey,
                         child: ListView(
                           children: [
-                            Text(translation.profilePage.username, style: Theme.of(context).textTheme.subtitle2!.copyWith(fontWeight: FontWeight.w500)),
+                            Text(translation.profilePage.username, style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w500)),
                             SizedBox(
                               height: Sizes.paddingS,
                             ),
                             UsernameTextFormField(viewModel.username),
                             SizedBox(height: Sizes.padding),
-                            Text(translation.profilePage.name, style: Theme.of(context).textTheme.subtitle2!.copyWith(fontWeight: FontWeight.w500)),
+                            Text(translation.profilePage.name, style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w500)),
                             SizedBox(height: Sizes.paddingS),
                             NameTextFormField(viewModel.name),
                             SizedBox(height: Sizes.padding),
-                            Text(translation.profilePage.surname, style: Theme.of(context).textTheme.subtitle2!.copyWith(fontWeight: FontWeight.w500)),
+                            Text(translation.profilePage.surname, style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w500)),
                             SizedBox(height: Sizes.paddingS),
                             SurnameTextFormField(viewModel.surname),
                             SizedBox(
                               height: Sizes.padding,
                             ),
-                            Text(translation.profilePage.email, style: Theme.of(context).textTheme.subtitle2!.copyWith(fontWeight: FontWeight.w500)),
+                            Text(translation.profilePage.email, style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w500)),
                             SizedBox(
                               height: Sizes.paddingS,
                             ),
@@ -94,7 +94,7 @@ class PersonalDataPage extends StatelessWidget {
                             SizedBox(
                               height: Sizes.padding,
                             ),
-                            Text(translation.profilePage.city, style: Theme.of(context).textTheme.subtitle2!.copyWith(fontWeight: FontWeight.w500)),
+                            Text(translation.profilePage.city, style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w500)),
                             SizedBox(
                               height: Sizes.paddingS,
                             ),

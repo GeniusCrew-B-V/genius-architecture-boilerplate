@@ -1,22 +1,26 @@
-// ignore_for_file: unnecessary_getters_setters
-
 import 'package:flutter/material.dart';
 
 import '../../../widget/ui/base_theme.dart';
 import '../../domain/theme_repository.dart';
 
 class ThemeViewModel with ChangeNotifier {
-  late ThemeRepository _repository;
+  ThemeViewModel(this._repository);
+
+  ThemeRepository _repository;
   bool _isLightMode = false;
+
   bool get isLightMode => _isLightMode;
+
   set isLightMode(bool value) {
     _isLightMode = value;
   }
 
   Color? primaryColor;
 
-  late ThemeData? _userTheme;
+  ThemeData? _userTheme = MyAppTheme.getLightMode(null);
+
   ThemeData? get userTheme => _userTheme;
+
   set userTheme(ThemeData? value) {
     _userTheme = value;
     notifyListeners();
@@ -27,17 +31,18 @@ class ThemeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  update(ThemeRepository repository) {
-    _repository = repository;
-  }
+  bool setInitialThemeDone = false;
 
   void setInitialTheme() {
-    final result = _repository.isDarkMode();
-    _isLightMode = result;
-    if (isLightMode) {
-      _userTheme = MyAppTheme.getLightMode(primaryColor);
-    } else {
-      _userTheme = MyAppTheme.getDarkMode(primaryColor);
+    if (!setInitialThemeDone) {
+      final result = _repository.isDarkMode();
+      _isLightMode = result;
+      if (isLightMode) {
+        _userTheme = MyAppTheme.getLightMode(primaryColor);
+      } else {
+        _userTheme = MyAppTheme.getDarkMode(primaryColor);
+      }
+      setInitialThemeDone = true;
     }
   }
 

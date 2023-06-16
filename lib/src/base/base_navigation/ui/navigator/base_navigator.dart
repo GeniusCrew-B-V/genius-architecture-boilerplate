@@ -1,17 +1,17 @@
+import 'package:baseproject/src/base/base_navigation/di/base_providers.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../home_page/ui/navigator/home_page_navigator.dart';
 import '../../../../profile_page/ui/navigator/profile_page_navigator.dart';
 import '../../../../updates/ui/navigator/updates_page_navigator.dart';
 import '../../../widget/ui/custom_navigator_pop_scope.dart';
-import '../../di/base_providers.dart';
 import '../pages/base_page.dart';
 import '../viewmodel/base_view_model_main.dart';
 
 final _baseNavigationKey = GlobalKey<NavigatorState>();
 
-class BaseNavigator extends StatelessWidget {
+class BaseNavigator extends ConsumerWidget {
   final Function()? onMainPop;
 
   const BaseNavigator({
@@ -31,8 +31,8 @@ class BaseNavigator extends StatelessWidget {
   ) {
     return [
       MaterialPage(
-        child: HomePageNavigator(
-          onMainPop: () async => false,
+        child: ProfilePageNavigator(
+          onMainPop: () async => onBasePagePop(viewModel),
         ),
       ),
       if (viewModel.bottomMenuIndex == 1)
@@ -43,31 +43,25 @@ class BaseNavigator extends StatelessWidget {
         ),
       if (viewModel.bottomMenuIndex == 2)
         MaterialPage(
-          child: ProfilePageNavigator(
-            onMainPop: () async => onBasePagePop(viewModel),
+          child: HomePageNavigator(
+            onMainPop: () async => false,
           ),
         ),
     ];
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: baseProviders,
-      child: Consumer<BaseViewModelMain>(
-        builder: (_, viewModel, __) {
-          return BasePage(
-            scaffoldKey: viewModel.basePageScaffoldKey,
-            hideNavigationBar: viewModel.hideNavigationBar,
-            body: CustomNavigatorPopScope(
-              navigatorStateKey: _baseNavigationKey,
-              pages: getPages(context, viewModel),
-              onPopPage: (route, result) {
-                viewModel.bottomMenuIndex = 0;
-                return false;
-              },
-            ),
-          );
+  Widget build(BuildContext context, ref) {
+    BaseViewModelMain viewModel = ref.watch(baseViewModelProvider);
+    return BasePage(
+      scaffoldKey: viewModel.basePageScaffoldKey,
+      hideNavigationBar: viewModel.hideNavigationBar,
+      body: CustomNavigatorPopScope(
+        navigatorStateKey: _baseNavigationKey,
+        pages: getPages(context, viewModel),
+        onPopPage: (route, result) {
+          viewModel.bottomMenuIndex = 0;
+          return false;
         },
       ),
     );

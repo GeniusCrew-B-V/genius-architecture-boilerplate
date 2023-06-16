@@ -72,12 +72,12 @@ class _PostDetailCardState extends State<PostDetailCard> {
                                   Text(
                                     postModel.creatorName,
                                     overflow: TextOverflow.clip,
-                                    style: Theme.of(context).textTheme.bodyText1,
+                                    style: Theme.of(context).textTheme.bodyLarge,
                                   ),
                                   Text(
                                     "${translation.postCard.postedOn + " " + postModel.postDate}",
                                     overflow: TextOverflow.clip,
-                                    style: Theme.of(context).textTheme.caption!.copyWith(color: Colors.white.withOpacity(0.7)),
+                                    style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white.withOpacity(0.7)),
                                   ),
                                 ],
                               ),
@@ -95,14 +95,14 @@ class _PostDetailCardState extends State<PostDetailCard> {
                         ),
                         child: Text(
                           postModel.title,
-                          style: Theme.of(context).textTheme.headline6?.copyWith(fontWeight: FontWeight.w700),
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: Sizes.padding, vertical: Sizes.paddingS),
                         child: Text(
                           postModel.caption,
-                          style: Theme.of(context).textTheme.bodyText2?.copyWith(color: AppColors.postCardDescriptionTextColor, fontWeight: FontWeight.w600),
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.postCardDescriptionTextColor, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ],

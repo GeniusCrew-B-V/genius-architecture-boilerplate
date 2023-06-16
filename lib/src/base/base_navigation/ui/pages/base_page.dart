@@ -1,7 +1,7 @@
+import 'package:baseproject/src/base/base_navigation/di/base_providers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../i18n/translations.dart';
 import '../../../../../resources/res.dart';
@@ -9,7 +9,7 @@ import '../../../widget/ui/custom_circular_progress_indicator.dart';
 import '../model/base_navigation_state.dart';
 import '../viewmodel/base_view_model_main.dart';
 
-class BasePage extends StatelessWidget {
+class BasePage extends ConsumerWidget {
   final Widget body;
   final Widget? endDrawer;
   final AppBar? appBar;
@@ -21,10 +21,10 @@ class BasePage extends StatelessWidget {
     this.appBar,
     this.endDrawer,
     this.scaffoldKey,
-    this.hideNavigationBar: false,
+    this.hideNavigationBar = false,
   });
 
-  Widget _drawer(BuildContext context) {
+  Widget _drawer(BaseViewModelMain viewModel, BuildContext context) {
     return Drawer(
       child: SafeArea(
         child: Column(
@@ -48,10 +48,7 @@ class BasePage extends StatelessWidget {
                   // to compact
                   trailing: Icon(Icons.arrow_forward_ios, size: Sizes.listTileIcon),
                   onTap: () {
-                    Provider.of<BaseViewModelMain>(
-                      context,
-                      listen: false,
-                    ).baseNavigationSubPagesState = BaseNavigationSubPagesState.settingsPage;
+                    viewModel.baseNavigationSubPagesState = BaseNavigationSubPagesState.settingsPage;
                     scaffoldKey!.currentState!.openEndDrawer();
                   },
                 ),
@@ -64,10 +61,7 @@ class BasePage extends StatelessWidget {
                       leading: Icon(Icons.exit_to_app),
                       title: Text(translation.generic.logout),
                       onTap: () async {
-                        Provider.of<BaseViewModelMain>(
-                          context,
-                          listen: false,
-                        ).logOut();
+                        viewModel.logOut();
                       },
                     ),
                   ),
@@ -80,21 +74,11 @@ class BasePage extends StatelessWidget {
     );
   }
 
-  Widget bottomBarIcon(BuildContext context, String iconSvgAsset, int activeOnIndex) {
-    int currentIndex = Provider.of<BaseViewModelMain>(
-      context,
-      listen: false,
-    ).bottomMenuIndex;
-    return SvgPicture.asset(iconSvgAsset, color: currentIndex == activeOnIndex ? AppColors.primaryColor : null, height: 20, width: 20);
-  }
-
   @override
-  Widget build(BuildContext context) {
-    bool hasLoadedUser = Provider.of<BaseViewModelMain>(
-      context,
-      listen: false,
-    ).hasLoadedUser;
-    return hasLoadedUser
+  Widget build(BuildContext context, WidgetRef ref) {
+    BaseViewModelMain viewModel = ref.watch(baseViewModelProvider);
+
+    return viewModel.hasLoadedUser
         ? Scaffold(
             resizeToAvoidBottomInset: false,
             body: Center(
@@ -108,7 +92,7 @@ class BasePage extends StatelessWidget {
             key: scaffoldKey,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             endDrawer: endDrawer,
-            drawer: _drawer(context),
+            drawer: _drawer(viewModel, context),
             appBar: null,
             bottomNavigationBar: AnimatedCrossFade(
               firstCurve: Curves.easeIn,
@@ -119,14 +103,8 @@ class BasePage extends StatelessWidget {
                 height: 0,
               ),
               firstChild: NavigationBar(
-                selectedIndex: Provider.of<BaseViewModelMain>(
-                  context,
-                  listen: false,
-                ).bottomMenuIndex,
-                onDestinationSelected: (i) => Provider.of<BaseViewModelMain>(
-                  context,
-                  listen: false,
-                ).bottomMenuIndex = i,
+                selectedIndex: viewModel.bottomMenuIndex,
+                onDestinationSelected: (i) => viewModel.bottomMenuIndex = i,
                 destinations: [
                   NavigationDestination(
                     icon: FaIcon(FontAwesomeIcons.house),

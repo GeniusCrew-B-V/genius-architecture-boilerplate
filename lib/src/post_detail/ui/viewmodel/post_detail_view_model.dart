@@ -5,8 +5,10 @@ mixin PostDetailViewModel on PostDetailViewModelShared {
   late Future<PostModelResponse> post;
 
   getPostDetail() async {
-    post = postDetailRepository.getPostDetail(postId).catchError((e) {
+    try {
+      post = postDetailRepository.getPostDetail(postId);
+    } catch (e) {
       showSnackBar!(e.toString());
-    });
+    }
   }
 }

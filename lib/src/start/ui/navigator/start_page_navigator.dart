@@ -1,10 +1,8 @@
-import 'package:baseproject/src/base/analytics/google_analytics_constants.dart';
 import 'package:baseproject/src/signup/ui/navigator/signup_navigator.dart';
+import 'package:baseproject/src/start/di/start_page_providers.dart';
 import 'package:baseproject/src/start/ui/pages/access_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../base/analytics/google_analytics.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../base/base_navigation/ui/navigator/base_navigator.dart';
 import '../../../base/widget/ui/custom_navigator_pop_scope.dart';
 import '../../../login/ui/navigator/login_navigator.dart';
@@ -21,19 +19,9 @@ class StartPageNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<StartPageViewModelMain>(
-      builder: (context, viewModel, child) {
-        GoogleAnalytics analytics = Provider.of<GoogleAnalytics>(
-          context,
-          listen: false,
-        );
-        if (viewModel.navigationState == StartPageNavigationState.startPage) {
-          analytics.setCurrentScreen(GAnalyticsPage.START_PAGE);
-        } else if (viewModel.navigationState == StartPageNavigationState.intro) {
-          analytics.setCurrentScreen(GAnalyticsPage.INTRO);
-        } else if (viewModel.navigationState == StartPageNavigationState.loginPage) {
-          analytics.setCurrentScreen(GAnalyticsPage.LOGIN_PAGE);
-        }
+    return Consumer(
+      builder: (context, ref, child) {
+        StartPageViewModelMain viewModel = ref.watch(startViewModelProvider);
         return CustomNavigatorPopScope(
           navigatorStateKey: _startPageNavigationKey,
           pages: [
@@ -45,7 +33,7 @@ class StartPageNavigator extends StatelessWidget {
             if (viewModel.navigationState == StartPageNavigationState.startPage)
               MaterialPage(
                 key: ValueKey('StartPage'),
-                child: StartPage(viewModel),
+                child: StartPage(),
               ),
             if (viewModel.navigationState == StartPageNavigationState.homePage)
               MaterialPage(

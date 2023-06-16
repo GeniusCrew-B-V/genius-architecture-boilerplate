@@ -7,7 +7,7 @@ import '../../../base/widget/ui/custom_circular_progress_indicator.dart';
 import '../viewmodel/signup_view_model_main.dart';
 
 class SignupPrivacyPolicyPage extends StatelessWidget {
-  final SignipViewModelMain viewModel;
+  final SignupViewModelMain viewModel;
   final Function onPop;
 
   const SignupPrivacyPolicyPage({Key? key, required this.viewModel, required this.onPop}) : super(key: key);
@@ -19,7 +19,7 @@ class SignupPrivacyPolicyPage extends StatelessWidget {
       contentPadding: EdgeInsets.all(0),
       title: GestureDetector(
         onTap: () => launchUrl("https://baseproject.com/terms-and-conditions/"),
-        child: Text(translation.signupPage.acceptTermsAndConditions, style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, decoration: TextDecoration.underline)),
+        child: Text(translation.signupPage.acceptTermsAndConditions, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, decoration: TextDecoration.underline)),
       ),
       value: viewModel.isTermsAndConditionsAccepted,
       onChanged: (newVal) async {
@@ -35,7 +35,7 @@ class SignupPrivacyPolicyPage extends StatelessWidget {
       contentPadding: EdgeInsets.all(0),
       title: Text(
         translation.signupPage.privacyPolicy1,
-        style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.normal),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.normal),
       ),
       value: viewModel.isPrivacyPolicyPoint2AAccepted,
       onChanged: (newVal) async {
@@ -51,7 +51,7 @@ class SignupPrivacyPolicyPage extends StatelessWidget {
       contentPadding: EdgeInsets.all(0),
       title: Text(
         translation.signupPage.privacyPolicy2B0,
-        style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.normal),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.normal),
       ),
       value: viewModel.isPrivacyPolicyPoint2B0Accepted,
       onChanged: (newVal) async {
@@ -67,7 +67,7 @@ class SignupPrivacyPolicyPage extends StatelessWidget {
       contentPadding: EdgeInsets.all(0),
       title: Text(
         translation.signupPage.privacyPolicy2B1,
-        style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.normal),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.normal),
       ),
       value: viewModel.isPrivacyPolicyPoint2B1Accepted,
       onChanged: (newVal) async {
@@ -83,7 +83,7 @@ class SignupPrivacyPolicyPage extends StatelessWidget {
       contentPadding: EdgeInsets.all(0),
       title: Text(
         translation.signupPage.privacyPolicy2B2,
-        style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.normal),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.normal),
       ),
       value: viewModel.isPrivacyPolicyPoint2B2Accepted,
       onChanged: (newVal) async {
@@ -99,7 +99,7 @@ class SignupPrivacyPolicyPage extends StatelessWidget {
       contentPadding: EdgeInsets.all(0),
       title: Text(
         translation.signupPage.privacyPolicy2B3,
-        style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.normal),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.normal),
       ),
       value: viewModel.isPrivacyPolicyPoint2B3Accepted,
       onChanged: (newVal) async {
@@ -140,13 +140,13 @@ class SignupPrivacyPolicyPage extends StatelessWidget {
                       Text(
                         translation.signupPage.privacyTitle,
                         textAlign: TextAlign.start,
-                        style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.w500),
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w500),
                       ),
                       Divider(color: Colors.transparent, height: Sizes.padding),
                       Text(
                         translation.signupPage.acceptPrivacy,
                         textAlign: TextAlign.start,
-                        style: Theme.of(context).textTheme.subtitle1?.copyWith(color: AppColors.gray),
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.gray),
                       ),
                       Divider(color: Colors.transparent, height: Sizes.paddingM),
                       _termsAndConditions(context),
@@ -156,7 +156,7 @@ class SignupPrivacyPolicyPage extends StatelessWidget {
                         onTap: () => launchUrl("https://app.baseproject.com/privacy-policy/"),
                         child: Text(
                           translation.signupPage.gdpr,
-                          style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Divider(color: Colors.transparent, height: Sizes.padding),

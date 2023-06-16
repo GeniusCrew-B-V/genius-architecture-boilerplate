@@ -17,7 +17,7 @@ class CustomTileWidget extends StatelessWidget {
           iconColor: Theme.of(context).primaryColor,
           title: Text(
             text,
-            style: Theme.of(context).textTheme.subtitle1!.copyWith(fontWeight: FontWeight.bold, color: AppColors.white),
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold, color: AppColors.white),
           ),
           onTap: () => onPressed(),
           trailing: Icon(

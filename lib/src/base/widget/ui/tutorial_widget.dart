@@ -55,7 +55,7 @@ class TutorialWidget extends StatelessWidget {
                                 Text(
                                   models[index].title, //localizations.welcomeStartPageMessage,
                                   textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.bodyText1!.copyWith(fontWeight: FontWeight.w600),
+                                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600),
                                 ),
                                 Divider(
                                   color: Colors.transparent,
@@ -64,7 +64,7 @@ class TutorialWidget extends StatelessWidget {
                                 Text(
                                   models[index].description, //localizations.welcomeStartPageDescription,
                                   textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.white.withOpacity(0.5)),
+                                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white.withOpacity(0.5)),
                                 ),
                               ],
                             ),

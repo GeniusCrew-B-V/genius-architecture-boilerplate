@@ -36,10 +36,9 @@ class MyAppTheme {
           iconTheme: MaterialStateProperty.all(IconThemeData(color: AppColors.navigationBarUnselectedIconColor))),
       brightness: Brightness.light,
       primaryColor: primaryColor ?? AppColors.primaryColor,
-      backgroundColor: AppColors.backgroundColor,
       outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
-        textStyle: ThemeData().primaryTextTheme.button!.copyWith(fontFamily: _fontFamily, fontSize: Sizes.fontSizeS, color: AppColors.primaryColor),
+        textStyle: ThemeData().primaryTextTheme.labelLarge!.copyWith(fontFamily: _fontFamily, fontSize: Sizes.fontSizeS, color: AppColors.primaryColor),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Sizes.buttonBorderRadius)),
         backgroundColor: AppColors.backgroundColor,
         side: BorderSide(color: AppColors.primaryColor),
@@ -50,7 +49,7 @@ class MyAppTheme {
       )),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          textStyle: ThemeData().primaryTextTheme.button!.copyWith(
+          textStyle: ThemeData().primaryTextTheme.labelLarge!.copyWith(
                 decoration: TextDecoration.underline,
               ),
           minimumSize: Size(
@@ -61,9 +60,9 @@ class MyAppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          foregroundColor: AppColors.white,
+          backgroundColor: AppColors.primaryColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Sizes.buttonBorderRadius)),
-          primary: AppColors.primaryColor,
-          onPrimary: AppColors.white,
           minimumSize: Size(
             double.infinity,
             Sizes.minButtonHeight,
@@ -85,8 +84,8 @@ class MyAppTheme {
             .apply(
               bodyColor: AppColors.appBarElementsColor,
             )
-            .bodyText2,
-        titleTextStyle: ThemeData().primaryTextTheme.headline6!.copyWith(fontFamily: _fontFamily, color: AppColors.appBarElementsColor),
+            .bodyMedium,
+        titleTextStyle: ThemeData().primaryTextTheme.titleLarge!.copyWith(fontFamily: _fontFamily, color: AppColors.appBarElementsColor),
       ),
       checkboxTheme: CheckboxThemeData(
         side: MaterialStateBorderSide.resolveWith((_) => const BorderSide(width: 1, color: AppColors.darkGray)),
@@ -100,14 +99,14 @@ class MyAppTheme {
             displayColor: AppColors.primaryTextColor,
           )
           .copyWith(
-              button: ThemeData().primaryTextTheme.button!.copyWith(
+              labelLarge: ThemeData().primaryTextTheme.labelLarge!.copyWith(
                     fontFamily: _fontFamily,
                     fontSize: Sizes.fontSize,
                     fontWeight: FontWeight.w600,
                   ),
-              subtitle1: ThemeData().primaryTextTheme.button!.copyWith(fontFamily: _fontFamily, color: Colors.black)),
+              titleMedium: ThemeData().primaryTextTheme.labelLarge!.copyWith(fontFamily: _fontFamily, color: Colors.black)),
       inputDecorationTheme: ThemeData().inputDecorationTheme.copyWith(
-            labelStyle: ThemeData().primaryTextTheme.bodyText2!.copyWith(
+            labelStyle: ThemeData().primaryTextTheme.bodyMedium!.copyWith(
                   fontFamily: _fontFamily,
                   color: AppColors.placeholderColor,
                 ),
@@ -120,11 +119,16 @@ class MyAppTheme {
             enabledBorder: _textFormFieldBorder,
           ),
       dialogTheme: DialogTheme(
-          titleTextStyle: ThemeData().primaryTextTheme.headline6!.copyWith(
+          titleTextStyle: ThemeData().primaryTextTheme.titleLarge!.copyWith(
                 fontFamily: _fontFamily,
                 color: Colors.black,
               )),
-      colorScheme: ColorScheme.fromSwatch(primarySwatch: AppColors.primaryMaterialColor).copyWith(primary: AppColors.primaryColor, secondary: AppColors.secondaryColor, brightness: Brightness.light),
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: AppColors.primaryMaterialColor).copyWith(
+        primary: AppColors.primaryColor,
+        secondary: AppColors.secondaryColor,
+        brightness: Brightness.light,
+        background: AppColors.backgroundColor,
+      ),
     );
   }
 
@@ -148,10 +152,9 @@ class MyAppTheme {
           iconTheme: MaterialStateProperty.all(IconThemeData(color: AppColors.navigationBarUnselectedIconColor))),
       brightness: Brightness.light,
       primaryColor: primaryColor ?? AppColors.primaryColorDark,
-      backgroundColor: AppColors.backgroundColor,
       outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
-        textStyle: ThemeData().primaryTextTheme.button!.copyWith(fontFamily: _fontFamily, fontSize: Sizes.fontSizeS, color: AppColors.primaryColorDark),
+        textStyle: ThemeData().primaryTextTheme.labelLarge!.copyWith(fontFamily: _fontFamily, fontSize: Sizes.fontSizeS, color: AppColors.primaryColorDark),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Sizes.buttonBorderRadius)),
         backgroundColor: AppColors.backgroundColor,
         side: BorderSide(color: AppColors.primaryColorDark),
@@ -162,7 +165,7 @@ class MyAppTheme {
       )),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          textStyle: ThemeData().primaryTextTheme.button!.copyWith(
+          textStyle: ThemeData().primaryTextTheme.labelLarge!.copyWith(
                 decoration: TextDecoration.underline,
               ),
           minimumSize: Size(
@@ -173,9 +176,9 @@ class MyAppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          foregroundColor: AppColors.white,
+          backgroundColor: AppColors.primaryColorDark,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Sizes.buttonBorderRadius)),
-          primary: AppColors.primaryColorDark,
-          onPrimary: AppColors.white,
           minimumSize: Size(
             double.infinity,
             Sizes.minButtonHeight,
@@ -197,8 +200,8 @@ class MyAppTheme {
             .apply(
               bodyColor: AppColors.appBarElementsColor,
             )
-            .bodyText2,
-        titleTextStyle: ThemeData().primaryTextTheme.headline6!.copyWith(fontFamily: _fontFamily, color: AppColors.appBarElementsColor),
+            .bodyMedium,
+        titleTextStyle: ThemeData().primaryTextTheme.titleLarge!.copyWith(fontFamily: _fontFamily, color: AppColors.appBarElementsColor),
       ),
       checkboxTheme: CheckboxThemeData(
         side: MaterialStateBorderSide.resolveWith((_) => const BorderSide(width: 1, color: AppColors.darkGray)),
@@ -212,14 +215,14 @@ class MyAppTheme {
             displayColor: AppColors.primaryTextColor,
           )
           .copyWith(
-              button: ThemeData().primaryTextTheme.button!.copyWith(
+              labelLarge: ThemeData().primaryTextTheme.labelLarge!.copyWith(
                     fontFamily: _fontFamily,
                     fontSize: Sizes.fontSize,
                     fontWeight: FontWeight.w600,
                   ),
-              subtitle1: ThemeData().primaryTextTheme.button!.copyWith(fontFamily: _fontFamily, color: Colors.black)),
+              titleMedium: ThemeData().primaryTextTheme.labelLarge!.copyWith(fontFamily: _fontFamily, color: Colors.black)),
       inputDecorationTheme: ThemeData().inputDecorationTheme.copyWith(
-            labelStyle: ThemeData().primaryTextTheme.bodyText2!.copyWith(
+            labelStyle: ThemeData().primaryTextTheme.bodyMedium!.copyWith(
                   fontFamily: _fontFamily,
                   color: AppColors.placeholderColor,
                 ),
@@ -231,8 +234,12 @@ class MyAppTheme {
             focusedBorder: _textFormFieldBorder,
             enabledBorder: _textFormFieldBorder,
           ),
-      colorScheme:
-          ColorScheme.fromSwatch(primarySwatch: AppColors.primaryMaterialColor).copyWith(primary: AppColors.primaryColorDark, secondary: AppColors.secondaryColorDark, brightness: Brightness.light),
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: AppColors.primaryMaterialColor).copyWith(
+        primary: AppColors.primaryColorDark,
+        secondary: AppColors.secondaryColorDark,
+        brightness: Brightness.light,
+        background: AppColors.backgroundColor,
+      ),
     );
   }
 }

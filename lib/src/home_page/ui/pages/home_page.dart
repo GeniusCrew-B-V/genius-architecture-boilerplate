@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             Text(
               "${translation.homePage.welcome} ${widget.viewModel.baseViewModel.userModel?.name ?? ""}!",
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline6!.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: Sizes.padding,
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             Text(
               translation.homePage.title,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(fontWeight: FontWeight.w600),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600),
             ),
             const SizedBox(
               height: Sizes.paddingL,
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             Text(
               translation.homePage.subtitle,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(fontWeight: FontWeight.w600),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600),
             ),
             const SizedBox(
               height: Sizes.paddingM,
@@ -75,12 +75,5 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         )),
       ),
     );
-  }
-}
-
-class NoGlowBehavior extends ScrollBehavior {
-  @override
-  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
-    return child;
   }
 }

@@ -6,7 +6,7 @@ import '../../../../resources/res.dart';
 import '../viewmodel/signup_view_model_main.dart';
 
 class SignupConfirmPage extends StatelessWidget {
-  final SignipViewModelMain viewModel;
+  final SignupViewModelMain viewModel;
   final Function onPop;
 
   const SignupConfirmPage({Key? key, required this.viewModel, required this.onPop}) : super(key: key);
@@ -32,17 +32,17 @@ class SignupConfirmPage extends StatelessWidget {
                       SizedBox(height: Sizes.paddingL),
                       Image.asset(ImageSrc.registrationSuccessImage),
                       SizedBox(height: Sizes.padding),
-                      Text(translation.signupPage.checkEmail, style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold)),
+                      Text(translation.signupPage.checkEmail, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold)),
                       SizedBox(height: Sizes.padding),
                       Text.rich(
                         TextSpan(children: <InlineSpan>[
-                          TextSpan(text: '${translation.signupPage.sentToEmail}\n', style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
-                          TextSpan(text: viewModel.email.text, style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
+                          TextSpan(text: '${translation.signupPage.sentToEmail}\n', style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
+                          TextSpan(text: viewModel.email.text, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
                         ]),
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: Sizes.padding),
-                      Text(translation.signupPage.checkSpam, textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w500, color: AppColors.gray)),
+                      Text(translation.signupPage.checkSpam, textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500, color: AppColors.gray)),
                     ],
                   ),
                   Spacer(),
@@ -61,8 +61,8 @@ class SignupConfirmPage extends StatelessWidget {
                     onPressed: () => {},
                     child: Text.rich(
                       TextSpan(children: <InlineSpan>[
-                        TextSpan(text: "${translation.signupPage.notReceived} ", style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
-                        TextSpan(text: translation.signupPage.sendAgain, style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor))
+                        TextSpan(text: "${translation.signupPage.notReceived} ", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
+                        TextSpan(text: translation.signupPage.sendAgain, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor))
                       ]),
                       textAlign: TextAlign.center,
                     ),
